@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вакансии для несовершеннолетних — г. Домодедово</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        .section-title .source-badge {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .source-badge.hh {
+            background: #d6001c;
+            color: white;
+        }
+
+        .source-badge.avito {
+            background: #00aaff;
+            color: white;
+        }
+
+        /* Vacancy Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .card.hh-card::before,
+        .card.avito-card::before {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            flex: 1;
+            margin-right: 12px;
+        }
+
+        .salary {
+            display: inline-block;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            color: #2e7d32;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .company {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .company svg {
+            width: 16px;
+            height: 16px;
+            fill: #888;
+            flex-shrink: 0;
+        }
+
+        .description {
+            color: #444;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        .contact-box {
+            background: #f8f9ff;
+            border: 1px solid #e8eaf6;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+
+        .contact-box .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .contact-box .value {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px 22px;
+            border-radius: 10px;
+            transition: opacity 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .card-link:hover {
+            opacity: 0.85;
+        }
+
+        .card-link.hh-link,
+        .card-link.avito-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            background: #f0f0f5;
+            color: #555;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Вакансии для несовершеннолетних</h1>
+        <p>Актуальные предложения работы и подработки для молодёжи в городе Домодедово</p>
+        <span class="badge">📍 г. Домодедово, Московская область</span>
+    </section>
+
+    <div class="container">
+
+        <div class="cards-grid" style="margin-top: 40px;">
+
+            <!-- HH Vacancy 1 -->
+            <div class="card hh-card">
+                <div class="card-header">
+                    <div class="card-title">Сборщик / Комплектовщик заказов</div>
+                    <span class="salary">120 700 – 156 700 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                    Сервис+ служба доставки
+                </div>
+                <div class="description">
+                    Сборка и комплектовка заказов на тёплом складе супермаркетов. Опыт не требуется. Графики: 6/1, 5/2, 4/4. Смены вечерние или ночные. Бонус 5 500 ₽ после 10-й смены, компенсация медкнижки до 3 000 ₽.
+                </div>
+                <div class="tags">
+                    <span class="tag">Без опыта</span>
+                    <span class="tag">Гибкий график</span>
+                    <span class="tag">Выплаты ежедневно</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">Откликнуться через hh.ru (контакты доступны после отклика)</div>
+                </div>
+                <a href="https://hh.ru/vacancy/131450563?from=share_ios" target="_blank" class="card-link hh-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на hh.ru
+                </a>
+            </div>
+
+            <!-- HH Vacancy 2 -->
+            <div class="card hh-card">
+                <div class="card-header">
+                    <div class="card-title">Курьер лёгких заказов в Аптеку</div>
+                    <span class="salary">135 000 – 267 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                    ООО Работа-Подработка
+                </div>
+                <div class="description">
+                    Доставка небольших заказов в пределах района. Свободный график. Опыт не требуется, нужен смартфон. Выплаты ежедневно, до 800 ₽/час.
+                </div>
+                <div class="tags">
+                    <span class="tag">Без опыта</span>
+                    <span class="tag">Свободный график</span>
+                    <span class="tag">До 800 ₽/час</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">Откликнуться через hh.ru (контакты доступны после отклика)</div>
+                </div>
+                <a href="https://hh.ru/vacancy/130992047?from=share_ios" target="_blank" class="card-link hh-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на hh.ru
+                </a>
+            </div>
+
+            <!-- HH Vacancy 3 -->
+            <div class="card hh-card">
+                <div class="card-header">
+                    <div class="card-title">Курьер лёгких заказов до 2 кг</div>
+                    <span class="salary">135 000 – 267 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                    ООО Работа-Подработка
+                </div>
+                <div class="description">
+                    Доставка посылок, аптек, канцелярии весом до 2,5 кг на расстояние до 2,5 км через мобильное приложение. Сборка и оплата товара не требуется. Оформление: договор ГПХ.
+                </div>
+                <div class="tags">
+                    <span class="tag">Без опыта</span>
+                    <span class="tag">Свободный график</span>
+                    <span class="tag">Договор ГПХ</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">Откликнуться через hh.ru (контакты доступны после отклика)</div>
+                </div>
+                <a href="https://hh.ru/vacancy/131372960?from=share_ios" target="_blank" class="card-link hh-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на hh.ru
+                </a>
+            </div>
+
+            <!-- HH Vacancy 4 -->
+            <div class="card hh-card">
+                <div class="card-header">
+                    <div class="card-title">Курьер в пункт выдачи Yandex Market</div>
+                    <span class="salary">135 000 – 267 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                    ООО Работа-Подработка
+                </div>
+                <div class="description">
+                    Доставка небольших посылок (до 2 кг) через приложение. Время доставок выбирается самостоятельно, гибкий график. Бонус новичка до 30 000 ₽ за первые заказы. Нужен смартфон.
+                </div>
+                <div class="tags">
+                    <span class="tag">Без опыта</span>
+                    <span class="tag">Гибкий график</span>
+                    <span class="tag">Бонус 30 000 ₽</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">WhatsApp/Telegram после отклика на hh.ru</div>
+                </div>
+                <a href="https://hh.ru/vacancy/130874478?from=share_ios" target="_blank" class="card-link hh-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на hh.ru
+                </a>
+            </div>
+
+
+            <!-- Avito Vacancy 1: Сотрудник склада -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Сотрудник склада</div>
+                    <span class="salary">от 88 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    FM Logistic
+                </div>
+                <div class="description">
+                    Оператор склада класса «А» в Домодедово (мкр. Белые Столбы). Приём товаров, перемещение, погрузка/выгрузка, инвентаризация. Обучение на электропогрузчиках бесплатно. ДМС, питание, бесплатный транспорт.
+                </div>
+                <div class="tags">
+                    <span class="tag">Без опыта</span>
+                    <span class="tag">Сменный 2/2</span>
+                    <span class="tag">Трудовой договор</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">Дарья Потапова | тел: 8 980 XXX-XX-XX (показать на Авито)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/sotrudnik_sklada_7893044755" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+            <!-- Avito Vacancy 2: Работник торгового зала -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Работник торгового зала</div>
+                    <span class="salary">62 000 – 70 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    Пятёрочка
+                </div>
+                <div class="description">
+                    Работа в торговом зале: консультация покупателей, выкладка и отслеживание сроков годности товаров. Трудоустройство с 16 лет. Смены от 4-х часов, можно совмещать с учёбой. Медкнижка за счёт компании.
+                </div>
+                <div class="tags">
+                    <span class="tag">От 16 лет</span>
+                    <span class="tag">Гибкий график</span>
+                    <span class="tag">Частичная занятость</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">тел: 8 958 XXX-XX-XX (показать на Авито)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/rabotnik_torgovogo_zala_7924345230" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+            <!-- Avito Vacancy 3: Подработка Rostic's -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Подработка в Rostic's (Ростикс)</div>
+                    <span class="salary">101 000 – 118 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    Rostic's (Ростикс)
+                </div>
+                <div class="description">
+                    Работа в ресторане быстрого питания. Обучение с нуля. Графики: 2/2, 4/3 или подработка от 4-х часов в день. Работа рядом с домом или учёбой. Карьерный рост — возможность стать менеджером.
+                </div>
+                <div class="tags">
+                    <span class="tag">Без опыта</span>
+                    <span class="tag">Сменный график</span>
+                    <span class="tag">Частичная занятость</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">Откликнуться через Авито (контакты на странице объявления)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/podrabotka_rostics_rostiks_domodedovo_7952992551" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+            <!-- Avito Vacancy 4: Сборка заказов -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Сборщик заказов</div>
+                    <span class="salary">60 000 – 75 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    Перекрёсток
+                </div>
+                <div class="description">
+                    Сборка заказов в супермаркете. Официальное оформление, белая зарплата, еженедельные выплаты. Гибкий график, частичная занятость от 4-х часов в день. Выбор удобного магазина.
+                </div>
+                <div class="tags">
+                    <span class="tag">От 16 лет</span>
+                    <span class="tag">Гибкий график</span>
+                    <span class="tag">Выплаты 2 раза/мес</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">тел: 8 800 XXX-XX-XX (показать на Авито)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/sborka_zakazov_7809336456" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+            <!-- Avito Vacancy 5: Курьер на склад -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Курьер на склад (ЗП ежедневно)</div>
+                    <span class="salary">6 000 – 8 000 ₽/день</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    Новая работа
+                </div>
+                <div class="description">
+                    Курьер в торговую сеть. Доход в среднем 600 ₽/час. Выплаты каждый день + еженедельные премиальные. Рабочее время выбираете сами. Гибкий график, частичная занятость.
+                </div>
+                <div class="tags">
+                    <span class="tag">От 16 лет</span>
+                    <span class="tag">Гибкий график</span>
+                    <span class="tag">Выплаты каждый день</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">Откликнуться через Авито (контакты на странице объявления)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/kurer_na_sklad_zp_ezhednevno_podrabotka_7930248627" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+            <!-- Avito Vacancy 6: Продавец-консультант -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Продавец-консультант</div>
+                    <span class="salary">37 700 – 50 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    Подружка, сеть магазинов
+                </div>
+                <div class="description">
+                    Работа в магазине косметики. Официальное оформление по ТК РФ, оплачиваемые отпуска и больничные. Сменный или неполный рабочий день. Скидка 20% на продукцию. Карьерный рост до управляющего за полгода.
+                </div>
+                <div class="tags">
+                    <span class="tag">От 16 лет</span>
+                    <span class="tag">Сменный график</span>
+                    <span class="tag">Выплаты 2 раза/мес</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">тел: 8 931 XXX-XX-XX (показать на Авито)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/prodavets-konsultant_3931293091" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+            <!-- Avito Vacancy 7: Официант -->
+            <div class="card avito-card">
+                <div class="card-header">
+                    <div class="card-title">Официант в авторское кафе</div>
+                    <span class="salary">60 000 – 80 000 ₽</span>
+                </div>
+                <div class="company">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h4v2h-4V4z"/></svg>
+                    Кафе «Крали-Вали», ЖК Домодедово-Парк
+                </div>
+                <div class="description">
+                    Работа официантом в авторском кафе. Опыт не обязателен — главное желание работать. Графики: 2/2, 5/2, 6/1. Дружная команда, обучение, возможность роста и развития.
+                </div>
+                <div class="tags">
+                    <span class="tag">От 16 лет</span>
+                    <span class="tag">Сменный график</span>
+                    <span class="tag">Общепит</span>
+                </div>
+                <div class="contact-box">
+                    <div class="label">Контакт</div>
+                    <div class="value">тел: 8 958 XXX-XX-XX (показать на Авито)</div>
+                </div>
+                <a href="https://www.avito.ru/domodedovo/vakansii/ofitsiant_v_avtorskoe_kafe_3367565651" target="_blank" class="card-link avito-link">
+                    <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7z"/></svg>
+                    Открыть на Авито
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer></footer>
+
+</body>
+</html>
